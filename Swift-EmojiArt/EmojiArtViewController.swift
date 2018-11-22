@@ -8,9 +8,8 @@
 
 import UIKit
 
-class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate
 {
-    
     
     
     @IBOutlet weak var dropZone: UIView!
@@ -70,6 +69,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         didSet {
             emojiCollenctionView.dataSource = self
             emojiCollenctionView.delegate = self
+            emojiCollenctionView.dragDelegate = self
         }
     }
     
@@ -90,6 +90,24 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        return dragItems(at: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
+        return dragItems(at: indexPath)
+    }
+    
+    private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
+        if let attributedString = (emojiCollenctionView.cellForItem(at: indexPath) as? EmojiCollectionViewCell)?.label.attributedText {
+            let dragItem = UIDragItem(itemProvider: NSItemProvider(object: attributedString))
+            dragItem.localObject = attributedString
+            return [dragItem]
+        }
+        else {
+            return []
+        }
+    }
     //"canHandle" function: can only drop both URL and Image
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         return session.canLoadObjects(ofClass: NSURL.self) && session.canLoadObjects(ofClass: UIImage.self)
