@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmojiArtViewController: UIViewController,UIDropInteractionDelegate {
+class EmojiArtViewController: UIViewController,UIDropInteractionDelegate,UIScrollViewDelegate {
     
     
     @IBOutlet weak var dropZone: UIView!
@@ -18,6 +18,38 @@ class EmojiArtViewController: UIViewController,UIDropInteractionDelegate {
             dropZone.addInteraction(UIDropInteraction(delegate: self))
         }
     }
+    
+    var emojiArtView = EmojiArtView()
+    
+    @IBOutlet weak var scrollView: UIScrollView!{
+        didSet {
+            scrollView.minimumZoomScale = 0.1
+            scrollView.maximumZoomScale = 5.0
+            scrollView.delegate = self
+            scrollView.addSubview(emojiArtView)
+        }
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return emojiArtView
+    }
+    
+    var emojiArtBackgroundImage: UIImage? {
+        get {
+            return emojiArtView.backgroundImage
+        }
+        set {
+            scrollView?.zoomScale = 1.0
+            emojiArtView.backgroundImage = newValue
+            let size = newValue?.size ?? CGSize.zero
+            emojiArtView.frame = CGRect(origin: CGPoint.zero, size: size)
+            scrollView?.contentSize = size
+            if let dropZone = self.dropZone, size.width > 0, size.height > 0 {
+                scrollView?.zoomScale = max(dropZone.bounds.size.width / size.width, dropZone.bounds.size.height / size.height)
+            }
+        }
+    }
+    
     //"canHandle" function: can only drop both URL and Image
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
         return session.canLoadObjects(ofClass: NSURL.self) && session.canLoadObjects(ofClass: UIImage.self)
@@ -34,7 +66,7 @@ class EmojiArtViewController: UIViewController,UIDropInteractionDelegate {
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
         imageFetcher = ImageFetcher() { (url, image) in
             DispatchQueue.main.async {
-                self.emojiArtView.backgroundImage = image
+                self.emojiArtBackgroundImage = image
             }
             
         }
@@ -51,6 +83,5 @@ class EmojiArtViewController: UIViewController,UIDropInteractionDelegate {
         }
     }
     
-    @IBOutlet weak var emojiArtView: EmojiArtView!
     
 }

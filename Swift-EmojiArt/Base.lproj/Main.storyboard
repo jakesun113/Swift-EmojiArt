@@ -78,17 +78,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLK-Dh-cJl">
                                 <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1eM-EA-i3L" customClass="EmojiArtView" customModule="Swift_EmojiArt" customModuleProvider="target">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uvk-2c-Vod">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
+                                    </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="1eM-EA-i3L" firstAttribute="leading" secondItem="aLK-Dh-cJl" secondAttribute="leading" id="8uo-Nc-zHl"/>
-                                    <constraint firstAttribute="bottom" secondItem="1eM-EA-i3L" secondAttribute="bottom" id="l0T-y3-axs"/>
-                                    <constraint firstAttribute="trailing" secondItem="1eM-EA-i3L" secondAttribute="trailing" id="rqk-f0-AgF"/>
-                                    <constraint firstItem="1eM-EA-i3L" firstAttribute="top" secondItem="aLK-Dh-cJl" secondAttribute="top" id="xb6-UH-wPy"/>
+                                    <constraint firstItem="uvk-2c-Vod" firstAttribute="leading" secondItem="aLK-Dh-cJl" secondAttribute="leading" id="8wG-t2-vnL"/>
+                                    <constraint firstAttribute="trailing" secondItem="uvk-2c-Vod" secondAttribute="trailing" id="B2b-0L-AJy"/>
+                                    <constraint firstAttribute="bottom" secondItem="uvk-2c-Vod" secondAttribute="bottom" id="IlU-7q-8N7"/>
+                                    <constraint firstItem="uvk-2c-Vod" firstAttribute="top" secondItem="aLK-Dh-cJl" secondAttribute="top" id="TAj-0j-YD2"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -103,7 +102,7 @@
                     </view>
                     <connections>
                         <outlet property="dropZone" destination="aLK-Dh-cJl" id="l2h-gM-oWk"/>
-                        <outlet property="emojiArtView" destination="1eM-EA-i3L" id="w7X-TW-OVQ"/>
+                        <outlet property="scrollView" destination="uvk-2c-Vod" id="WrX-Rb-9Aa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -113,7 +112,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Eer-KH-U5B">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w5T-YU-080" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AtC-tO-EXj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="X0p-fm-19d">
@@ -125,6 +123,7 @@
                         <segue destination="8XW-cP-7y3" kind="relationship" relationship="rootViewController" id="JbW-wj-yde"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w5T-YU-080" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-234" y="-666"/>
         </scene>
