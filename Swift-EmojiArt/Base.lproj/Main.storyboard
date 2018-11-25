@@ -59,8 +59,8 @@
             <objects>
                 <splitViewController id="pfy-MI-w2m" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="showDetail" id="Gpd-zD-YOH"/>
                         <segue destination="AtC-tO-EXj" kind="relationship" relationship="masterViewController" id="ZrF-es-8vs"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="detailViewController" id="2Pg-Vf-vKa"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SfI-KH-IWJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -72,14 +72,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="EmojiArtViewController" customModule="Swift_EmojiArt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLK-Dh-cJl">
-                                <rect key="frame" x="0.0" y="108" width="1024" height="660"/>
+                                <rect key="frame" x="0.0" y="108" width="703.5" height="660"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uvk-2c-Vod">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="660"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="660"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="250" constant="1024" id="66c-JK-jAs"/>
                                             <constraint firstAttribute="height" priority="250" constant="748" id="evq-Af-Fs4"/>
@@ -97,7 +97,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="J0O-Ij-c2d">
-                                <rect key="frame" x="0.0" y="20" width="1024" height="80"/>
+                                <rect key="frame" x="0.0" y="20" width="703.5" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="G97-fn-KVE"/>
