@@ -16,6 +16,7 @@ class TextFieldCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
         }
     }
     
+    //closure var
     var resignationHandler: (() -> Void)?
     
     func textFieldDidEndEditing(_ textField: UITextField) {

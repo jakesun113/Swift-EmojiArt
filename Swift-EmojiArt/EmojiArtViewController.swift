@@ -115,15 +115,17 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
             let cell =
                 collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiInputCell",
                                                    for: indexPath)
-//            if let inputCell = cell as? TextFieldCollectionViewCell {
-//                inputCell.resignationHandler = { [weak self, unowned inputCell] in
-//                    if let text = inputCell.textField.text {
-//                        self?.emojis = (text.map { String($0) } + self!.emojis).uniquified
-//                    }
-//                    self?.addingEmoji = false
-//                    self?.emojiCollectionView.reloadData()
-//                }
-//            }
+            //add input content into the collection view
+            if let inputCell = cell as? TextFieldCollectionViewCell {
+                inputCell.resignationHandler = { [weak self, unowned inputCell] in
+                    if let text = inputCell.textField.text {
+                        self?.emojis = (text.map { String($0) } + self!.emojis).uniquified
+                    }
+                    self?.addingEmoji = false
+                    //after adding emoji to the model, once model is updated, reload the data
+                    self?.emojiCollectionView.reloadData()
+                }
+            }
             return cell
         } else {
             let cell =
